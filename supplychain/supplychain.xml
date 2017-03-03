@@ -1,0 +1,35 @@
+<supplychain> 
+   <Supplier> 
+       <logo></logo> 
+       <name>SandyTawadros</name> 
+       <industry>food</industry> 
+       <email>sandytawadros@Gmail.com</email>
+       <number>01221533057</number>
+       <phone>0222903151</phone>
+       <country>Egypt</country>
+       <city>Cairo</city>
+       <address>3 Abdelayhaga st. Heliopolis</address>
+       <postal_code>12345</postal_code>
+       <certificates>Certified associate project manager</certificates>
+       <partners>Nestle</partners>
+       <facebook>Sandy Guirguis</facebook>
+       <linkedin>Sandy Tawadros</linkedin>
+     </Supplier>
+
+     <Supplier> 
+       <logo></logo> 
+       <name>SalmaTawadros</name> 
+       <industry>automotive</industry> 
+       <email>salmatawadros@Gmail.com</email>
+       <number>01221533234</number>
+       <phone>0222903341</phone>
+       <country>Egypt</country>
+       <city>Cairo</city>
+       <address>3 Abdelayhaga st. Mohandessin</address>
+       <postal_code>54321</postal_code>
+       <certificates>Certified professional project manager</certificates>
+       <partners>Ghabbour Auto</partners>
+       <facebook>Salma Guirguis</facebook>
+       <linkedin>Salma Tawadros</linkedin>
+     </Supplier>
+</supplychain>
