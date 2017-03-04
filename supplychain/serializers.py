@@ -7,6 +7,7 @@ class SupplierSerializer(serializers.ModelSerializer):
     A serializer for a Supplier object
 
     author: Sandy Guirguis
+    Please help...
     """
 
     class Meta:
