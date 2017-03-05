@@ -16,9 +16,9 @@ class Supplier(models.Model):
         ('electronics', 'Electronics')
     )
     logo = models.ImageField(null=True, blank=True)
-    name = models.CharField(max_length=256)
+    name = models.CharField(max_length=256, unique=True)
     industry = models.CharField(max_length=256, choices=CATEGORY_CHOICES)
-    email = models.CharField(max_length=256)
+    email = models.EmailField()
     number = models.CharField(max_length=256)
     phone = models.CharField(max_length=256)
     country = models.CharField(max_length=256)
@@ -31,7 +31,7 @@ class Supplier(models.Model):
     linkedin = models.CharField(max_length=256, null=True, blank=True)
 
     def __str__(self):
-        return self.name
+        return self.name + " working in the " + self.industry + " industry"
 
 
 # class MyXMLImporterModel(XMLImporter):
@@ -51,3 +51,6 @@ class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=500)
     comment = models.CharField(max_length=256)
+
+    def __str__(self):
+        return self.name + " supplied by: " + self.supplier
