@@ -1,0 +1,9 @@
+*.pyc
+main/migrations/
+messaging/migrations/
+*.sqlite3
+*.db
+*.DS_Store
+.coverage
+htmlcov/
+media/
