@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import (Supplier, Product)
+from .models import (Supplier, Product, Part)
 
 
 class ExcludeSlugAdmin(admin.ModelAdmin):
@@ -8,3 +8,4 @@ class ExcludeSlugAdmin(admin.ModelAdmin):
 
 admin.site.register(Supplier)
 admin.site.register(Product)
+admin.site.register(Part)

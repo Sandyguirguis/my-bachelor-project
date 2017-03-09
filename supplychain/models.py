@@ -1,6 +1,5 @@
 from __future__ import unicode_literals
 from django.db import models
-#from data_importer.importers import XMLImporter
 
 
 class Supplier(models.Model):
@@ -34,16 +33,9 @@ class Supplier(models.Model):
         return self.name + " working in the " + self.industry + " industry"
 
 
-# class MyXMLImporterModel(XMLImporter):
-#     root = 'supplychain.xml'
-
-#     class Meta:
-#         model = Supplier
-
-
 class Product(models.Model):
     '''
-    Representas a single product
+    Represents a single product
     Author: Sandy Guirguis
     '''
     supplier = models.ForeignKey(
@@ -53,4 +45,19 @@ class Product(models.Model):
     comment = models.CharField(max_length=256)
 
     def __str__(self):
-        return self.name + " supplied by: " + self.supplier
+        return self.name + " supplied by: " + self.supplier.name
+
+
+class Part(models.Model):
+    """
+    Represents a single part of a product
+    Author: Sandy Guirguis
+    """
+    product = models.ForeignKey(
+        Product, on_delete=models.CASCADE, related_name='part', null=True)
+    name = models.CharField(max_length=256, null=True)
+    description = models.CharField(max_length=500, null=True)
+    comment = models.CharField(max_length=256, null=True)
+
+    def __str__(self):
+        return self.name + " is a part of product" + self.product.name

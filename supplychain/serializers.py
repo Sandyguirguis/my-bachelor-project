@@ -1,5 +1,6 @@
 from rest_framework import serializers
-from .models import (Supplier, Product)
+from .models import (Supplier, Product, Part)
+from django.core.exceptions import ValidationError
 
 
 class SupplierSerializer(serializers.ModelSerializer):
@@ -7,7 +8,6 @@ class SupplierSerializer(serializers.ModelSerializer):
     A serializer for a Supplier object
 
     author: Sandy Guirguis
-    Please help...
     """
 
     class Meta:
@@ -18,6 +18,17 @@ class SupplierSerializer(serializers.ModelSerializer):
                   'linkedin')
 
 
+class PartSerializer(serializers.ModelSerializer):
+    """
+    A serializer for a Part in a Product
+
+    author: Sandy Guirguis
+    """
+    class Meta:
+        model = Part
+        fields = ('id', 'product', 'name', 'description', 'comment')
+
+
 class ProductSerializer(serializers.ModelSerializer):
     """
     A serializer for a Product object
@@ -25,6 +36,26 @@ class ProductSerializer(serializers.ModelSerializer):
     author: Sandy Guirguis
     """
 
+    part = PartSerializer(many=True)
+
     class Meta:
         model = Product
-        fields = ('id', 'supplier', 'name', 'description', 'comment')
+        fields = ('id', 'supplier', 'name', 'description', 'comment', 'part')
+
+    def create(self, validated_data):
+        parts_data = validated_data.pop('part')
+        product = Product.objects.create(**validated_data)
+        for parts_data in parts_data:
+            Part.objects.create(product=product, **parts_data)
+        return product
+
+    def update(self, instance, validated_data):
+        instance.name = validated_data.get(
+            'name', instance.name)
+        instance.description = validated_data.get(
+            'description', instance.description)
+        instance.comment = validated_data.get(
+            'comment', instance.comment)
+        instance.part = validated_data.get(
+            'part', instance.part)
+        return instance
