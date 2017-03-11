@@ -61,3 +61,15 @@ class Part(models.Model):
 
     def __str__(self):
         return self.name + " is a part of product" + self.product.name
+
+
+class SubPart(models.Model):
+    """
+    Represents a single subpart
+    Author: Sandy Guirguis
+    """
+    part = models.ForeignKey(
+        Part, on_delete=models.CASCADE, related_name='subpart', null=True)
+    name = models.CharField(max_length=256, null=True)
+    description = models.CharField(max_length=500, null=True)
+    comment = models.CharField(max_length=256, null=True)
