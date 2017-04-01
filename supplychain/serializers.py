@@ -70,7 +70,7 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Product
-        fields = ('id', 'supplier', 'name', 'description', 'comment', 'part')
+        fields = ('id', 'supplier', 'name', 'description', 'comment', 'availability', 'part')
 
     def create(self, validated_data):
         parts_data = validated_data.pop('part')

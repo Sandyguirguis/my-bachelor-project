@@ -43,6 +43,7 @@ class Product(models.Model):
     name = models.CharField(max_length=256)
     description = models.CharField(max_length=500)
     comment = models.CharField(max_length=256)
+    Availability = models.IntegerField(null=True, blank=True)
 
     def __str__(self):
         return self.name + " supplied by: " + self.supplier.name
